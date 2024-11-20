@@ -3,6 +3,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Form } from '@/components/ui/form.tsx';
 import DetailsSection from '@/forms/manage-restaurant-form/DetailsSection.tsx';
+import { Separator } from '@/components/ui/separator.tsx';
+import CuisinesSection from '@/forms/manage-restaurant-form/CuisinesSection.tsx';
+import MenuSection from '@/forms/manage-restaurant-form/MenuSection.tsx';
+import ImageSection from '@/forms/manage-restaurant-form/ImageSection.tsx';
+import LoadingButton from '@/components/LoadingButton.tsx';
+import { Button } from '@/components/ui/button.tsx';
 
 const formSchema = z.object({
   restaurantName: z.string({
@@ -29,7 +35,7 @@ const formSchema = z.object({
     invalid_type_error: 'Estimated delivery time must be a number',
   }),
   cuisines: z.array(z.string()).nonempty({
-    message: 'please select at least one cuisine',
+    message: 'Please select at least one cuisine',
   }),
   menuItems: z.array(
     z.object({
@@ -38,7 +44,8 @@ const formSchema = z.object({
       description: z.string().optional(),
     })
   ),
-  imageUrl: z.instanceof(File, { message: 'Image is required' }),
+  imageUrl: z.string().optional(),
+  imageFile: z.instanceof(File, { message: 'Image is required' }),
 });
 
 type RestaurantFormData = z.infer<typeof formSchema>;
@@ -74,6 +81,18 @@ const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
         className={'space-y-8 bg-gray-50 p-10 rounded-lg'}
       >
         <DetailsSection />
+        <Separator />
+        <CuisinesSection />
+        <Separator />
+        <MenuSection />
+        <Separator />
+        <ImageSection />
+
+        {isLoading ? (
+          <LoadingButton />
+        ) : (
+          <Button type={'submit'}>Submit</Button>
+        )}
       </form>
     </Form>
   );

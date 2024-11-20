@@ -35,7 +35,11 @@ export default function DetailsSection() {
           <FormItem>
             <FormLabel>Restaurant Name</FormLabel>
             <FormControl>
-              <Input {...field} className={'bg-white'} />
+              <Input
+                {...field}
+                className={'bg-white'}
+                placeholder={'My Restaurant'}
+              />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -60,7 +64,7 @@ export default function DetailsSection() {
         )}
       />
 
-      <div className={'flex gap-4'}>
+      <div className={'flex gap-4 flex-col md:flex-row'}>
         <FormField
           control={control}
           name={'city'}
@@ -68,7 +72,11 @@ export default function DetailsSection() {
             <FormItem className={'flex-1'}>
               <FormLabel>City</FormLabel>
               <FormControl>
-                <Input {...field} className={'bg-white'} />
+                <Input
+                  {...field}
+                  className={'bg-white'}
+                  placeholder={'San Diego'}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -107,7 +115,11 @@ export default function DetailsSection() {
             <FormItem className={'flex-1'}>
               <FormLabel>Zip</FormLabel>
               <FormControl>
-                <Input {...field} className={'bg-white'} />
+                <Input
+                  {...field}
+                  className={'bg-white'}
+                  placeholder={'90210'}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -119,7 +131,7 @@ export default function DetailsSection() {
         control={control}
         name={'deliveryPrice'}
         render={({ field }) => (
-          <FormItem className={'max-w-[25%]'}>
+          <FormItem className={'md:max-w-[50%] w-full'}>
             <FormLabel>Delivery Price ($)</FormLabel>
             <FormControl>
               <Input {...field} className={'bg-white'} placeholder={'9.99'} />
@@ -133,7 +145,7 @@ export default function DetailsSection() {
         control={control}
         name={'estimatedDeliveryTime'}
         render={({ field }) => (
-          <FormItem className={'max-w-[25%]'}>
+          <FormItem className={'md:max-w-[50%] '}>
             <FormLabel>Estimated Delivery Time (minutes)</FormLabel>
             <FormControl>
               <Input {...field} className={'bg-white'} placeholder={'30'} />
